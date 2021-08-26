@@ -4,10 +4,6 @@ dataModels:
     isPrivate: false
     stateModel: "Жизненный цикл заказа"
     classModels: "Объектная модель"
-  - entity: good
-    codeName: Good
-    isPrivate: false
-    classModels: "Объектная модель"
 
 serviceModels:
   - service: catalog
