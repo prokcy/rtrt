@@ -1,0 +1,53 @@
+dataModels:
+  - entity: order
+    codeName: Order
+    isPrivate: false
+    stateModel: "Жизненный цикл заказа"
+    classModels: "Объектная модель"
+  - entity: good
+    codeName: Good
+    isPrivate: false
+    classModels: "Объектная модель"
+
+serviceModels:
+  - service: catalog
+    codeName: Catalog
+    classModels: Model1
+  - service: orderService
+    codeName: OrderService
+    classModels: Model1
+
+stateModels:
+  - name: "Жизненный цикл заказа"
+    type: puml
+    contentType: inline
+    data: |
+      @startuml 
+        [*] --> Created
+        Created --> Approved
+        Approved --> Sent
+        Sent --> Delivered
+        Created --> Cancelled
+        Cancelled --> [*]
+
+        note right of Created
+          Черновик заказа создан,
+          добавление позиций
+        end note
+
+        note right of Cancelled
+          Заказ отменён
+        end note
+
+        note left of Approved
+          Заказ был согласован 
+          и со стороны Заказчика,
+          и со стороны Исполнителя
+        end note
+      @enduml
+
+classModels:
+  - name: "Объектная модель"
+    type: puml
+    contentType: file
+    fileName: class-model.puml

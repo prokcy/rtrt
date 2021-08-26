@@ -1,0 +1,45 @@
+@startuml
+  class Order {
+    String Id
+    String Name
+    CargoType CargoType
+
+    String OriginPoint
+    String OrderDatetime
+    String ShippmentPoint
+    String ShippmentDatetime
+    
+    Good[] Positions 
+    Real TotalCost
+
+    String ApproveByCustomerDatetime
+    String ApproveBySupplierDatetime
+  }
+  note right of Order
+    **Id** - внутренний идентификатор заказа
+    **Name** - предмет заказа
+  end note
+
+  class Good {
+    String Position
+    Real Price
+    Real Amount
+    Real TotalCost
+  }
+
+  enum CargoType {
+    Container,
+    LiquidBulk,
+    DryBulk
+  }
+
+
+
+  interface OrderService {
+    String CreateOrderDraft(String name, CargoType cargoType)
+    void AddOrderPositions(String position, Real price, Real amount)
+    void ApproveOrder(String orderId)
+    void AcceptOrder(String orderId, String acceptPoint)
+  }
+
+@enduml
